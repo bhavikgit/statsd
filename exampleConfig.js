@@ -122,5 +122,21 @@ Optional Variables:
   graphitePort: 2003
 , graphiteHost: "graphite.example.com"
 , port: 8125
-, backends: [ "./backends/graphite" ]
+, debug: true
+, flushInterval: 90000
+, backends: ["statsd-elasticsearch-backend", "./backends/console"]
+, elasticsearch: {
+   port:          9200,
+   host:          "10.1.7.100",
+   path:          "/",
+   indexPrefix:   "statsd",
+   //indexTimestamp: "year",  //for index statsd-2015 
+   //indexTimestamp: "month", //for index statsd-2015.01
+   indexTimestamp: "day",     //for index statsd-2015.01.01
+   countType:     "counter",
+   timerType:     "timer",
+   timerDataType: "timer_data",
+   gaugeDataType: "gauge",
+   formatter:     "default_format"
+ }
 }
